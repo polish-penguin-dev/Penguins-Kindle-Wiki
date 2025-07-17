@@ -233,7 +233,7 @@ There Are Many Tools Availible To Assist You With App Development. For Example;
 - [Can Mesquite Use?](https://html-preview.github.io/?url=https://github.com/polish-penguin-dev/Illusion/blob/main/Mesquite/Can-Mesquite-Use.html) - CanIUse For Mesquite. See If You Can Use Certain Web Features
 - [BabelJS](https://babeljs.io/)/[SWC](https://swc.rs/) - Transpile Modern JS (E.g. ES6) To ES5 Kindle-Compatible JS
 - [Polyfill](https://github.com/polish-penguin-dev/IllusionChess/blob/master/illusionChess/js/polyfill.min.js) - Allow You To Use Modern Web APIs On The Kindle (NOT Language Features!). Best In Combination With A Transpiler
-- [Mesquito SDK](https://github.com/KindleModding/Mesquito/blob/main/mesquito/sdk.js) - Although Adapted For Usage In The Store WAF, It Contains Useful Scriptlets And Functionality Regaring Chromebar, For Example.
+- [Mesquito SDK](https://github.com/KindleModding/Mesquito/blob/main/mesquito/sdk.js) - Although Adapted For Usage In The Store WAF, It Contains Useful Scriptlets And Functionality Regarding Chromebar, For Example.
 - [Illusion](https://github.com/polish-penguin-dev/Illusion) - A Scriptlet Which Registers And Launches WAFs For You
 - [ScreenControl](https://github.com/polish-penguin-dev/Illusion/blob/main/Assets/screencontrol-binaries.tar.gz) - Control Your Kindle From The Web
 

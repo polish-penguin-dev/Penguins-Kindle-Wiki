@@ -154,7 +154,7 @@ Dialogs are popups with messages shown to the user. They are handled by Pillow, 
 
 For example;
 
-
+![Kindle release notes dialog](https://media.goodereader.com/blog/uploads/images/2018/12/03043947/WhatsNew_5_10_1_3.png.webp)
 
 All system dialogs should be handled by Pillow.
 

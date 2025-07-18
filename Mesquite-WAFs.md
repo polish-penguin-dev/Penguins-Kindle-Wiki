@@ -126,7 +126,7 @@ Disables/enables APIs available to the Kindle object.
 
 A whitelist for which LIPC services can be called through `kindle.messaging`.
 
-## Conclusion
+### Conclusion
 
 That's some of the notable ones, with things like gestures & settings omitted. Please see [the wiki's](https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html) config.xml analysis.
 

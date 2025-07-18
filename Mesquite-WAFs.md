@@ -1,19 +1,19 @@
 # Mesquite & WAFs
 
-This Page Contains All My Mesquite Knowledge, Findings & Tips. For A Complete Guide On Easy Apps, See [Illusion](/Illusion-Guide.md).
+This page contains all my mesquite knowledge, findings & tips. For a complete guide on easy apps, see [Illusion](/Illusion-Guide.md).
 
 ## Definitions
 
-- WAFs - Web Application Frameworks. Web Apps With Additional Features
-- Mesquite - A Private Amazon "Service" That Launches/Manages WAFs, Using WebKit.
-- Mesquito - The E-Book Store WAF Exploit That Allows You To Modify Store Contents Unjailbroken.
-- Pillow - Mesquite's "Glue" That Seemingly Handles Dialogs And Has Elevated Permissions Through NativeBridge.
+- WAFs - web application frameworks. Web apps with additional features
+- Mesquite - a private amazon "Service" that launches/manages wafs, using webkit.
+- Mesquito - the e-book store waf exploit that allows you to modify store contents unjailbroken.
+- Pillow - mesquite's "Glue" that seemingly handles dialogs and has elevated permissions through nativebridge.
 
-Those Are The Main Ones - Mesquito And Mesquite Are NOT The Same. Mesquito Is A Pun On Mesquite.
+Those are the main ones - mesquito and mesquite are not the same. Mesquito is a pun on mesquite.
 
 ## Registering An App
 
-To Make A Functional App You Need A WAF, You Need To Copy It To `var/local/mesquite` And Register It To Appreg.DB (`var/local/appreg.db`) To Make It Launchable With `lipc`. See WAF Structure Below, To Register An App To Appreg You Can Use The Following SH Replacing Variables;
+To make a functional app you need a waf, you need to copy it to `var/local/mesquite` and register it to appreg.db (`var/local/appreg.db`) to make it launchable with `lipc`. See waf structure below, to register an app to appreg you can use the following sh replacing variables;
 
 ```sh
 APP_ID="com.example.namespace"
@@ -33,11 +33,11 @@ INSERT OR REPLACE INTO properties(handlerId,name,value)
 EOF
 ```
 
-The `APP_ID` Variable Should Match The One Specified In The `config.xml` Within The WAF. 
+The `app_id` variable should match the one specified in the `config.xml` within the waf. 
 
-You Can Then Launch It Like So; `lipc-set-prop com.lab126.appmgrd start app://$APP_ID`.
+You can then launch it like so; `lipc-set-prop com.lab126.appmgrd start app://$app_id`.
 
-Please Note That `opt/var/local/mesquite` Is NOT Symlinked To `var/local/mesquite`!
+Please note that `opt/var/local/mesquite` is not symlinked to `var/local/mesquite`!
 
 ## WAF Structure
 
@@ -49,11 +49,11 @@ Please Note That `opt/var/local/mesquite` Is NOT Symlinked To `var/local/mesquit
 |   config.xml
 ```
 
-That's An Example Structure You Could Use, Although Only `config.xml` And An `index.html` Entrypoint Is Necessary.
+That's an example structure you could use, although only `config.xml` and an `index.html` entrypoint is necessary.
 
 ## Config XML
 
-The Config.XML File Contains Parameters That Tell Mesquite How To Run Your WAF. Some Notable Values Include;
+The config.xml file contains parameters that tell mesquite how to run your waf. Some notable values include;
 
 ### The Header
 
@@ -62,11 +62,11 @@ The Config.XML File Contains Parameters That Tell Mesquite How To Run Your WAF. 
     xmlns:kindle="http://kindle.amazon.com/ns/widget-extensions">
 ```
 
-The Widget ID Should Match The One You Register In Appreg. You Can Also Specify App Version. "Application" Is The Only Currently Known Viewmode.
+The widget id should match the one you register in appreg. You can also specify app version. "Application" is the only currently known viewmode.
 
 ### Name & Description
 
-Here's A Kindle Store Example:
+Here's a kindle store example:
 
 ```xml
 <name xml:lang="en">Kindle Store</name>
@@ -79,7 +79,7 @@ Here's A Kindle Store Example:
 <description xml:lang="ja">Amazon Kindle&#12473;&#12488;&#12450;</description>
 ```
 
-This Part Serves To Show WAF Name & Description In Kindle UI. It Supports `xml:lang` For Localisation & Can Use Unicode Characters As Shown.
+This part serves to show waf name & description in kindle ui. It supports `xml:lang` for localisation & can use unicode characters as shown.
 
 ### The Payload
 
@@ -87,7 +87,7 @@ This Part Serves To Show WAF Name & Description In Kindle UI. It Supports `xml:l
 <content src="index.html" />
 ```
 
-This Tag Tells Mesquite Which File To Load When The WAF Is Opened.
+This tag tells mesquite which file to load when the waf is opened.
 
 ### Features
 
@@ -112,7 +112,7 @@ This Tag Tells Mesquite Which File To Load When The WAF Is Opened.
 </feature>
 ```
 
-Disables/Enables APIs Availible To The Kindle Object
+Disables/enables apis availible to the kindle object
 
 ### Messaging
 
@@ -124,53 +124,51 @@ Disables/Enables APIs Availible To The Kindle Object
 </kindle:messaging>
 ```
 
-A Whitelist For Which LIPC Services Can Be Called Through `kindle.messaging`
+A whitelist for which lipc services can be called through `kindle.messaging`
 
 ### Conclusion 
 
-That's Some Of The Notable Ones, With Things Like Gestures & Settings Omitted. Please See [The Wiki's](https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html) Config.XML Analyzation.
+That's some of the notable ones, with things like gestures & settings omitted. Please see [the wiki's](https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html) config.xml analyzation.
 
 ## Limitations
 
-Mesquite Is Based On A WebKit Version Around Safari 5.0 (Webkit 533.16 According To MDN Web Docs) And So You Can Use HTML4 (Some HTML5), CSS2 (Some CSS3) And ES5. You Can Use Numerous Tools To Overcome This, See Development Tools Section, But It's Important To Keep In Mind You Cannot Use Modern Web Features Such As `const`, `let`, `() =>`, `Promise()`, At Least By Default.
-
-Mesquite & Java Are Also Being Phased Out Of The UI In Favour Of React Native.
+Mesquite is based on a webkit version around safari 5.0 (webkit 533.16 according to mdn web docs) and so you can use html4 (some html5), css2 (some css3) and es5. You can use numerous tools to overcome this, see development tools section, but it's important to keep in mind you cannot use modern web features such as `const`, `let`, `() =>`, `promise()`, at least by default.
 
 ## Kindle Object
 
-Every WAF Has An Exposed `window.kindle` Object Which Acts As A Bridge Between JavaScript And The Kindle's System. Many APIs Are Availible, Which Are Configurable Via The Features Section In A WAFs `config.xml`.
+Every waf has an exposed `window.kindle` object which acts as a bridge between javascript and the kindle's system. Many apis are availible, which are configurable via the features section in a wafs `config.xml`.
 
-In Addition To All Of The APIs Detailed Here, `isMock: 1` And `extensions: {}` Properties Are Exposed When Loading The Kindle Store Remote (The WAF Loads An Iframe Of A Website) In A Modern Web Browser.
+In addition to all of the apis detailed here, `ismock: 1` and `extensions: {}` properties are exposed when loading the kindle store remote (the waf loads an iframe of a website) in a modern web browser.
 
-The Kindle Store Remote Is Detailed More In Notes.
+The kindle store remote is detailed more in notes.
 
-You Can See Simple Documentation On [The Wiki](https://kindlemodding.org/wafs-and-mesquite/the-kindle-object/), But It Omits `bluetooth`, `winmgrUtils`, `localprefs`, `bkgrnd`, `popup`, `uitest`, `download`, `appmgr` Feature Documentation Mentioned In Config XML.
+You can see simple documentation on [the wiki](https://kindlemodding.org/wafs-and-mesquite/the-kindle-object/), but it omits `bluetooth`, `winmgrutils`, `localprefs`, `bkgrnd`, `popup`, `uitest`, `download`, `appmgr` feature documentation mentioned in config xml.
 
-I'll Try To Update The Documentation At A Later Date Because It Can Be Quite Confusing At Times/Nonsensical And Lacks Documentation Of The Features Above Mentioned.
+I'll try to update the documentation at a later date because it can be quite confusing at times/nonsensical and lacks documentation of the features above mentioned.
 
 ## Dialogs
 
-Dialogs Are Popups With Messages Shown To The User. They Are Handled By Pillow, Wrapping An Instance Of Mesquite To Show Contents.
+Dialogs are popups with messages shown to the user. They are handled by pillow, wrapping an instance of mesquite to show contents.
 
-For Example;
+For example;
 
-![Kindle Release Notes Dialog](https://media.goodereader.com/blog/uploads/images/2018/12/03043947/WhatsNew_5_10_1_3.png.webp)
+![kindle release notes dialog](https://media.goodereader.com/blog/uploads/images/2018/12/03043947/whatsnew_5_10_1_3.png.webp)
 
-All System Dialogs Should Be Handled By Pillow.
+All system dialogs should be handled by pillow.
 
 ## Pillow
 
-Pillow Dialogs Are Stored In `usr/share/webkit-1.0/pillow` And Have Varying Degrees Of Permissions.
+Pillow dialogs are stored in `usr/share/webkit-1.0/pillow` and have varying degrees of permissions.
 
-Pillow Dialogs Can Be Elevated, Able To Run Any LIPC Service With No Config.XML Whitelist (Unlike Regular WAFs) Through NativeBridge, But Sometimes They Only Have Regular JS Or None At All - I Am Yet To Find Out Where This Is Configured.
+Pillow dialogs can be elevated, able to run any lipc service with no config.xml whitelist (unlike regular wafs) through nativebridge, but sometimes they only have regular js or none at all - I am yet to find out where this is configured.
 
-Pillow Is Said To Begin Being Replaced By KPPPillow (Kindle++ Pillow) With React Native In 5.18.3.
+Pillow is said to begin being replaced by kpppillow (kindle++ pillow) with react native in 5.18.3.
 
-(Sad Fact! `com.lab126.pillow` And `com.lab126.blanket` Are Not Actually Related...)
+(sad fact! `com.lab126.pillow` and `com.lab126.blanket` are not actually related...)
 
 ## NativeBridge
 
-NativeBridge Is Like The Kindle Object In The Sense It Bridges Mesquite To The Kindle's System, But Has Elevated Permissions, As Mentioned Above. There Is No NativeBridge Documentation On The Wiki, So Here's The Methods List Taken From `usr/lib/libpillow.so` (With Descriptions For The Ones I Know - Though Some Are Self-Explanitory):
+Nativebridge is like the kindle object in the sense it bridges mesquite to the kindle's system, but has elevated permissions, as mentioned above. There is no nativebridge documentation on the wiki, so here's the methods list taken from `usr/lib/libpillow.so` (with descriptions for the ones I know - though some are self-explanitory):
 
 - devcapInitialize
 - raiseChrome
@@ -224,56 +222,56 @@ NativeBridge Is Like The Kindle Object In The Sense It Bridges Mesquite To The K
 - dbgCmd
     - Execute Command, Mainly From `/usr/share/webkit-1.0/pillow/debug_cmds.json`
 
-Also See [PillowHelper](https://github.com/PaulFreund/WebLaunch/blob/master/bin/pillowHelper.js)!
+Also see [pillowhelper](https://github.Com/paulfreund/weblaunch/blob/master/bin/pillowhelper.js)!
 
 ## Development Tools
 
-There Are Many Tools Availible To Assist You With App Development. For Example;
+There are many tools availible to assist you with app development. For example;
 
-- [Can Mesquite Use?](https://html-preview.github.io/?url=https://github.com/polish-penguin-dev/Illusion/blob/main/Mesquite/Can-Mesquite-Use.html) - CanIUse For Mesquite. See If You Can Use Certain Web Features
-- [BabelJS](https://babeljs.io/)/[SWC](https://swc.rs/) - Transpile Modern JS (E.g. ES6) To ES5 Kindle-Compatible JS
-- [Polyfill](https://github.com/polish-penguin-dev/IllusionChess/blob/master/illusionChess/js/polyfill.min.js) - Allow You To Use Modern Web APIs On The Kindle (NOT Language Features!). Best In Combination With A Transpiler
-- [Mesquito SDK](https://github.com/KindleModding/Mesquito/blob/main/mesquito/sdk.js) - Although Adapted For Usage In The Store WAF, It Contains Useful Scriptlets And Functionality Regarding Chromebar, For Example.
-- [Illusion](https://github.com/polish-penguin-dev/Illusion) - A Scriptlet Which Registers And Launches WAFs For You
-- [ScreenControl](https://github.com/polish-penguin-dev/Illusion/blob/main/Assets/screencontrol-binaries.tar.gz) - Control Your Kindle From The Web
+- [can mesquite use?](https://html-preview.github.io/?Url=https://github.Com/polish-penguin-dev/illusion/blob/main/mesquite/can-mesquite-use.html) - caniuse for mesquite. See if you can use certain web features
+- [babeljs](https://babeljs.io/)/[swc](https://swc.rs/) - transpile modern js (e.g. es6) to es5 kindle-compatible js
+- [polyfill](https://github.com/polish-penguin-dev/illusionchess/blob/master/illusionchess/js/polyfill.min.js) - allow you to use modern web apis on the kindle (not language features!). Best in combination with a transpiler
+- [mesquito sdk](https://github.com/kindlemodding/mesquito/blob/main/mesquito/sdk.js) - although adapted for usage in the store waf, it contains useful scriptlets and functionality regarding chromebar, for example.
+- [illusion](https://github.com/polish-penguin-dev/illusion) - a scriptlet which registers and launches wafs for you
+- [screencontrol](https://github.com/polish-penguin-dev/illusion/blob/main/assets/screencontrol-binaries.tar.gz) - control your kindle from the web
 
 ## Exploits
 
-Because Mesquite Is Quite Old (And Being Phased Out Of The UI With React Native), It's Been Known To Be Susceptible To Exploits. Here Are Some Examples;
+Because mesquite is quite old (and being phased out of the ui with react native), it's been known to be susceptible to exploits. Here are some examples;
 
 ### Mesquito
 
-[Mesquito](https://github.com/KindleModding/Mesquito/) Itself Is An Exploit, Replacing The Contents Of The Kindle Store WAF Through `.active_content_sandbox` Cache. It Is Semi-Persistent, As The Store Constantly "Updates" And Overwrites This Cache.
+[mesquito](https://github.Com/kindlemodding/mesquito/) itself is an exploit, replacing the contents of the kindle store waf through `.Active_content_sandbox` cache. It is semi-persistent, as the store constantly "Updates" and overwrites this cache.
 
-This Was Patched In 5.18.1+ But If You Make The Cache Extremely Large (E.g. By Pasting In Filler Files) Or Pasting And Doing A Hard Reset Some People Mention Cache Deletion Doesn't Happen/Is Slower.
+This was patched in 5.18.1+ but if you make the cache extremely large (e.G. By pasting in filler files) or pasting and doing a hard reset some people mention cache deletion doesn't happen/is slower.
 
-### WinterBreak
+### Winterbreak
 
-[WinterBreak](https://github.com/KindleModding/WinterBreak) Is A More Complex JailBreak Using A Couple Exploits. It Firstly Utilises Mesquito, To Overwrite The Store. It Then Sends A Message To `com.lab126.pillow`, Event ID `customDialog`. In This Method You Would Usually Specify A `dialog.html` File And It Would Display `/usr/share/webkit-1.0/pillow/ + [PATH]` (Or Something Along Those Lines). But Because Of This, You Could Specify Something Like `../../../../../../mnt/us/dialog.html` In The Path And It Could Load A Dialog With NativeBridge Access From `/mnt/us`, Accessible Unjailbroken. This Is Done To Run `com.lab126.transfer` Through LIPC Which Runs `jb.sh`. NativeBridge Was Necessary And `customDialog` Because Of The Mesquite `sendMessage` Whitelist In The Store Config XML Which Does Not Allow For `com.lab126.transfer`.
+[winterbreak](https://github.Com/kindlemodding/winterbreak) is a more complex jailbreak using a couple exploits. It firstly utilises mesquito, to overwrite the store. It then sends a message to `com.Lab126.Pillow`, event id `customdialog`. In this method you would usually specify a `dialog.Html` file and it would display `/usr/share/webkit-1.0/pillow/ + [path]` (or something along those lines). But because of this, you could specify something like `../../../../../../mnt/us/dialog.Html` in the path and it could load a dialog with nativebridge access from `/mnt/us`, accessible unjailbroken. This is done to run `com.Lab126.Transfer` through lipc which runs `jb.Sh`. Nativebridge was necessary and `customdialog` because of the mesquite `sendmessage` whitelist in the store config xml which does not allow for `com.Lab126.Transfer`.
 
-This `customDialog` Exploit Is Patched In 5.18.1+.
+This `customdialog` exploit is patched in 5.18.1+.
 
-### LanguageBreak One-Click
+### Languagebreak One-Click
 
-[LanguageBreak One-Click](https://github.com/notmarek/LanguageBreak/tree/oneclick) Is What WinterBreak Is Based Upon. It Also Uses NativeBridge, `customDialog`, and Mesquito, Except It Uses LanguageBreak Method To Run SH And Not `com.lab126.transfer`. It Is More Experimental.
+[languagebreak one-click](https://github.Com/notmarek/languagebreak/tree/oneclick) is what winterbreak is based upon. It also uses nativebridge, `customdialog`, and mesquito, except it uses languagebreak method to run sh and not `com.Lab126.Transfer`. It is more experimental.
 
-### Experimental Browser XSS (FileManager.JS)
+### Experimental Browser XSS (filemanager.Js)
 
-On Firmware Versions Below 5.16.4, The Experimental Browser Uses Mesquite And Not Chromium. It Is Essentially A WAF With Some Scripts (Including FileManager.JS) That Turns It Into A Browser With A URL Bar, Downloads Functionality, Etc...
+On firmware versions below 5.16.4, the experimental browser uses mesquite and not chromium. It is essentially a waf with some scripts (including filemanager.Js) that turns it into a browser with a url bar, downloads functionality, etc...
 
-When You Download A File, It Is Handled By `FileManager.JS` Which Creates A Dialog Asking "Would You Like To Download [File Name].[Ext]?". You Can Place HTML Elements In The Download Name, Allowing For XSS, And Running A Dialoger HTML. This Pillow Dialog Does Not Have `nativeBridge` Access Though.
+When you download a file, it is handled by `filemanager.Js` which creates a dialog asking "Would you like to download [file name].[ext]?". You can place html elements in the download name, allowing for xss, and running a dialoger html. This pillow dialog does not have `nativebridge` access though.
 
-It Is Patched In Modern Firmware.
+It is patched in modern firmware.
 
-### KindleDrip
+### Kindledrip
 
-I Would Recommend Reading [This Article](https://medium.com/@baronyogev/kindledrip-from-your-kindles-email-address-to-using-your-credit-card-bb93dbfb2a08) On How KindleDrip Utilised Send-To-Kindle, Mesquite, JPEG XR Overflow, And More To Achieve RCE.
+I would recommend reading [this article](https://medium.Com/@baronyogev/kindledrip-from-your-kindles-email-address-to-using-your-credit-card-bb93dbfb2a08) on how kindledrip utilised send-to-kindle, mesquite, jpeg xr overflow, and more to achieve rce.
 
 ## UI Design
 
-UI Design Can Be Tricky On The Kindle Because Scaling Varies Wildly Between Models, And CSS2 Lacks Modern Features Like Grid, Or FlexBox.
+Ui design can be tricky on the kindle because scaling varies wildly between models, and css2 lacks modern features like grid, or flexbox.
 
-I Would Recommend Using `@media` Queries And `%` Values For Optimal Scaling Between Kindle Models. Additionally, To Center A `<div>` Element, You Can Use Tables:
+I would recommend using `@media` queries and `%` values for optimal scaling between kindle models. Additionally, to center a `<div>` element, you can use tables:
 
 ```html
 <style>
@@ -307,51 +305,51 @@ I Would Recommend Using `@media` Queries And `%` Values For Optimal Scaling Betw
 
 ## Points Of Reference
 
-Here Are Some Mesquite Apps You Can Use As Reference When Building Your Own:
+Here are some mesquite apps you can use as reference when building your own:
 
-- [IllusionChess](https://github.com/polish-penguin-dev/IllusionChess) - Penguins184
-- [KAnki](https://github.com/crizmo/KAnki) - Kurizu
-- [KWordle](https://github.com/crizmo/KWordle/) - Kurizu
-- [KindleForge](https://github.com/polish-penguin-dev/KindleForge) - Penguins184, Kurizu, Gingrspacecadet
+- [illusionchess](https://github.Com/polish-penguin-dev/illusionchess) - penguins184
+- [kanki](https://github.Com/crizmo/kanki) - kurizu
+- [kwordle](https://github.Com/crizmo/kwordle/) - kurizu
+- [kindleforge](https://github.Com/polish-penguin-dev/kindleforge) - penguins184, kurizu, gingrspacecadet
 
 ## Notes
 
-Here Are Some Additional Notes/Info You May Find Useful.
+Here are some additional notes/info you may find useful.
 
 ### The Kindle Store Remote
 
-In WAFs, `kindle.dconfig` Stores Store-Specific Values.
+In wafs, `kindle.dconfig` stores store-specific values.
 
-`kindle.dconfig.getValue("url.store")` Returns `https://www.amazon.co.uk/gp/digital/juno/index.html` (With Varying TLDs Based On Region). The Store WAF Loads This URL Into An `iframe`.
+`kindle.dconfig.getValue("url.store")` returns `https://www.amazon.co.uk/gp/digital/juno/index.html` (with varying tlds based on region). The store waf loads this url into an `iframe`.
 
-You Can Access This Now, But Will Get A (Fake) `HTTP 404` Error Unless Your UserAgent Abides By RegEx `\d-juno_\d`.
+You can access this now, but will get a (fake) `http 404` error unless your useragent abides by regex `\d-juno_\d`.
 
-Oddly, Appending Query Parameters `?clientId=ereader&apiVersion=1.0&deviceType=A21RY355YUXQAF` (Device Type Shouldn't Matter) You Recieve; "Please update your Kindle software to connect to the Kindle store. Kindle software can be downloaded here: http://www.amazon.co.uk/KindleSoftwareUpdate".
+Oddly, appending query parameters `?clientId=ereader&apiVersion=1.0&deviceType=A21RY355YUXQAF` (device type shouldn't matter) you recieve; "Please update your Kindle software to connect to the Kindle store. Kindle software can be downloaded here: http://www.amazon.co.uk/KindleSoftwareUpdate".
 
-Additionally, Appending `?developer=1` Query Parameter The Source Code Is Not Truncated And Fully Commented.
+Additionally, appending `?developer=1` query parameter the source code is not truncated and fully commented.
 
-Previously It Is Said This Prefills A Mock Kindle Object If Loaded In A Modern Web Browser, But This Does No Longer Happen. The Object Is Still Probably Stored In Kindle Firmware.
+Previously it is said this prefills a mock kindle object if loaded in a modern web browser, but this does no longer happen. The object is still probably stored in kindle firmware.
 
 ### Utild
 
-[Utild](https://github.com/KindleModding/utild) Is A Simple LIPC Service You Can Use To Just Run `SH` Instead Of The `com.lab126.transfer` Exploit. It Works More Reliably And Can Be Installed & Used In Mesquite Apps To Run Actual Commands. See IllusionUtild For More.
+[utild](https://github.com/KindleModding/utild) is a simple lipc service you can use to just run `sh` instead of the `com.lab126.transfer` exploit. It works more reliably and can be installed & used in mesquite apps to run actual commands. See illusionutild for more.
 
 ## FAQ
 
-### Why Can't I Use `kindle.messaging.recieveMessage()` With Utild?
+### why can't I use `kindle.messaging.recievemessage()` with utild?
 
-This Happens Because `UTILD` Returns Command Value With `lipc-get-prop` Whereas To Use `recieveMessage()` An Event Must Be Sent To The WAF With `lipc-send-event`.
+This happens because `utild` returns command value with `lipc-get-prop` whereas to use `recievemessage()` an event must be sent to the waf with `lipc-send-event`.
 
-### Why Does `com.lab126.transfer` Not Run SH?
+### Why does `com.lab126.transfer` not run sh?
 
-`com.lab126.transfer` Can Only Be Ran With A Valid Internet Connection.
+`com.lab126.transfer` can only be ran with a valid internet connection.
 
-### Does Chromium Have WAFs?
+### Does chromium have wafs?
 
-With The Introduction Of Chromium In 5.16.4 And Slow Replacement Of Mesquite, It Seems Reasonable - But Chromium Cannot Act As A WAF With Kindle Object.
+With the introduction of chromium in 5.16.4 and slow replacement of mesquite, it seems reasonable - but chromium cannot act as a waf with kindle object.
 
 ## Conclusion
 
-Thanks For Reading My Mesquite & WAFs Writeup!
+Thanks for reading my mesquite & wafs writeup!
 
-Contact Penguins184 On Discord To Suggest Updates/Ask Any Questions. Bye!
+Contact penguins184 on discord to suggest updates/ask any questions. Bye!

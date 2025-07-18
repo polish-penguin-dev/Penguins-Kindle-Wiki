@@ -80,7 +80,8 @@ This is your basic app. You can add more logic later.
 
 # Utilities & helpers
 
-> [!TIP] Always try to import JavaScript locally, rather than using an external service (e.g. JSDelivr) for reliability & usage offline.
+> [!TIP]
+> Always try to import JavaScript locally, rather than using an external service (e.g. JSDelivr) for reliability & usage offline.
 
 There are many different tools you can make use of — or should make use of — in, or when testing your application:
 

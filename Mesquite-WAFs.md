@@ -340,7 +340,7 @@ Previously it is said this prefills a mock Kindle object if loaded in a modern w
 
 ### Why can't I use `kindle.messaging.recieveMessage()` with Utild?
 
-This happens because `Utild` returns command value with `lipc-get-prop` whereas to use `recieveMessage()` an event must be sent to `lipc-send-event`.
+This happens because `Utild` returns command value with `lipc-get-prop` whereas to use `recieveMessage()` an event must be sent to the WAF with `lipc-send-event`.
 
 ### Why does `com.lab126.transfer` not run sh?
 

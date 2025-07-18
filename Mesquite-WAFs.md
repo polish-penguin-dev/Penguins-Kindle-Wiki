@@ -13,7 +13,7 @@ Those are the main ones - Mesquito and Mesquite are not the same. Mesquito is a 
 
 ## Registering an app
 
-To make a functional app you need a WAF. You need to copy it to `var/local/mesquite` and register it to Appreg.db (`var/local/appreg.db`) to make it launchable with `lipc`. See WAF structure below. To register an app to Appreg you can use the following sh replacing variables;
+To make a functional app you need a WAF, you need to copy it to `var/local/mesquite` and register it to Appreg.db (`var/local/appreg.db`) to make it launchable with `lipc`. See WAF structure below. To register an app to Appreg you can use the following sh replacing variables;
 
 ```sh
 APP_ID="com.example.namespace"

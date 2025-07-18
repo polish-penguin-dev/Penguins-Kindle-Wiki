@@ -1,40 +1,40 @@
 # Illusion Guide
 
-> [!NOTE]
-> This Page Contains The (Slightly Modified) "Getting Started" Section Of The Old Wiki. It Teaches The Basics Of Making An IllusionGeneric Application.
+> [!NOTE] This page contains the (slightly modified) "Getting Started" section of the old wiki. It teaches the basics of making an IllusionGeneric application.
 
-# Getting Started
+# Getting started
 
-This Section Contains All You Need To Know About Creating Your First App.
+This section contains all you need to know about creating your first app.
 
 ## Contents
 
 - Prerequisites
-- Making An App
-- Utilities & Helpers
+- Making an app
+- Utilities & helpers
 - Config.XML
-- Illusion Generic Scriptlet
+- Illusion Generic scriptlet
 - FAQ
 
-> [!IMPORTANT]  
-> You Need Prior HTML, CSS, And JS Knowledge To Continue.
+> [!IMPORTANT]\
+> You need prior HTML, CSS, and JS knowledge to continue.
 
 # Prerequisites
 
-- A Jailbroken Kindle That Supports Scriptlets*
-- HTML, CSS, JS Knowledge
-- Patience, Common Sense
+- A jailbroken Kindle that supports scriptlets\*
+- HTML, CSS, JS knowledge
+- Patience, common sense
 
-*Illusion Acts As A Scriptlet By Default. This Can Be Modified Into A KUAL Application If You Have Technical Knowledge.
+\*Illusion acts as a scriptlet by default. This can be modified into a KUAL application if you have technical knowledge.
 
-# Making Your App
+# Making your app
 
-> [!WARNING]  
-> Kindles Support ES5 And Semi-Modern HTML5, CSS3.
+> [!WARNING]\
+> Kindles support ES5 and semi-modern HTML5, CSS3.
 
-To Begin, All You Need To Do Is Make A New Folder With A HTML, CSS, And JS File. For Example,
+To begin, all you need to do is make a new folder with an HTML, CSS, and JS file. For example,
 
 `hello/index.html`:
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -49,52 +49,54 @@ To Begin, All You Need To Do Is Make A New Folder With A HTML, CSS, And JS File.
 <body>
     <div class="container">
         <h1>Illusion</h1>
-        <p id="status">JavaScript Doesn't Work</p>
+        <p id="status">JavaScript doesn't work</p>
     </div>
 </body>
 </html>
 ```
 
 `hello/style.css`:
+
 ```css
 .container {
     text-align: center;
 };
 
 h1, p {
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
 };
 ```
 
 `hello/script.js`:
+
 ```js
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("status").innerHTML = "JavaScript Works!";
+    document.getElementById("status").innerHTML = "JavaScript works!";
 });
 ```
 
-This Is Your Basic App. You Can Add More Logic Later.
+This is your basic app. You can add more logic later.
 
-# Utilities & Helpers
+# Utilities & helpers
 
-> [!TIP]
-> Always Try To Import JavaScript Locally, Rather Than Using An External Sevice (E.g. JSDelivr) For Reliability & Usage Offline.
+> [!TIP] Always try to import JavaScript locally, rather than using an external service (e.g. JSDelivr) for reliability & usage offline.
 
-There Are Many Different Tools You Can Make Use Of - Or Should Make Use Of - In, Or When Testing Your Application:
+There are many different tools you can make use of — or should make use of — in, or when testing your application:
 
-- [BabelJS](https://babeljs.io/)/[SWC](https://swc.rs/); JavaScript Transpiler (E.g. ES9 -> ES5, Kindle Compatible)
-- [Polyfill](/Assets/polyfill.min.js); Allows You To Use Semi-Modern JavaScript Features
-- [ScreenControl](/Assets/screencontrol-binaries.tar.gz) (Lab126); Control Your Kindle From The Web Scriptlet (Endpoint `http://192.168.X.X:6789/screen`)
-- [Mesquito SDK](/Assets/mesquito-sdk.js); Helper Functions
-- [CanIUse](https://caniuse.com/); Can I Use This Web Feature? (Kindle's Browser Is Approx. Safari 5/WebKit 533.16)
+- [BabelJS](https://babeljs.io/)/[SWC](https://swc.rs/); JavaScript transpiler (e.g. ES9 → ES5, Kindle compatible)
+- [Polyfill](/Assets/polyfill.min.js); allows you to use semi-modern JavaScript features
+- [ScreenControl](/Assets/screencontrol-binaries.tar.gz) (Lab126); control your Kindle from the web scriptlet (endpoint `http://192.168.X.X:6789/screen`)
+- [Mesquito SDK](/Assets/mesquito-sdk.js); helper functions
+- [CanIUse](https://caniuse.com/); can I use this web feature? (Kindle's browser is approx. Safari 5/WebKit 533.16)
 
-For Support, Direct Message `penguins184` (That's Me!) On Discord, Or Ask Someone In The [Discord](https://discord.gg/kindle) That's Smart.
+For support, DM `penguins184` (that's me!) on Discord, or ask someone in the [Discord](https://discord.gg/kindle) that's smart.
 
 # Config.XML
 
-Back To Your Project, Create A Config.XML File In The Same Folder As Your HTML, CSS, JS.
+Back to your project, create a Config.XML file in the same folder as your HTML, CSS, JS.
 
 `hello/config.xml`:
+
 ```xml
 <?xml version="1.0"?>
 <widget id="com.you.hello" version="1.0" viewmodes="application" xmlns="http://www.w3.org/ns/widgets"
@@ -104,7 +106,7 @@ Back To Your Project, Create A Config.XML File In The Same Folder As Your HTML, 
 
     <content src="index.html" />
 
-    <!-- Permissions & Settings Standard From Kindle Store. -->
+    <!-- Permissions & settings standard from Kindle Store. -->
     <kindle:permissions>
         <kindle:permission name="local-port-access" />
     </kindle:permissions>
@@ -163,7 +165,7 @@ Back To Your Project, Create A Config.XML File In The Same Folder As Your HTML, 
         <kindle:app name="com.lab126.readnow" value="yes" />
     </kindle:messaging>
 
-    <!-- Removed JQuery, Non-Used JS -->
+    <!-- Removed jQuery, non-used JS -->
     <kindle:resources>
         <kindle:asset key="AllowHTTPSApplicationManifestCrossDomain" value="true" />
         <kindle:asset key="ApplicationCachePath" value="/var/local/mesquite/devkit/resource/appcache" />
@@ -179,9 +181,10 @@ Back To Your Project, Create A Config.XML File In The Same Folder As Your HTML, 
 </widget>
 ```
 
-This Isn't Going To Get Into Details - For That, Check The [KindleModding](https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html) Wiki.
+This isn't going to get into details — for that, check the [KindleModding](https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html) wiki.
 
-You Only Need To Change The Top Part. Fields That You Could Change Are Marked "MODIFY";
+You only need to change the top part. Fields that you could change are marked "MODIFY";
+
 ```xml
 <?xml version="1.0"?>
 <widget id="MODIFY (1)" version="MODIFY (2)" viewmodes="application" xmlns="http://www.w3.org/ns/widgets"
@@ -190,28 +193,29 @@ You Only Need To Change The Top Part. Fields That You Could Change Are Marked "M
     <description xml:lang="en">MODIFY (4)</description>
 
     <content src="MODIFY (5)" />
-    ... (Everything Else, Keep The Same)
+    ... (everything else, keep the same)
 ```
 
-1. The Namespace - For Example, `xyz.penguins184.myapp`. This Doesn't Have To Match A Real Domain; You Could Do `com.your_username.appname`.
-2. Version - Anything You Want, Or Just 1.0
-3. App Name (English)
-4. App Description (English)
-5. Entrypoint (Default, "index.html")
+1. The namespace – for example, `xyz.penguins184.myapp`. This doesn't have to match a real domain; you could do `com.your_username.appname`.
+2. Version – anything you want, or just 1.0.
+3. App name (English).
+4. App description (English).
+5. Entrypoint (default, "index.html").
 
 # Adding Illusion
 
-Almost There! To Make Your App Executable, You Could Add Illusion.
+Almost there! To make your app executable, you could add Illusion.
 
-1. Download [Illusion Generic Scriptlet](/Scripts/IllusionGeneric.sh)
-2. Modify Where Indicated;
+1. Download [Illusion Generic scriptlet](/Scripts/IllusionGeneric.sh)
+2. Modify where indicated;
+
 ```sh
 #!/bin/sh
 # Name: MODIFY (1)
 # Author: MODIFY (2)
 # DontUseFBInk
 
-#Modify Below!
+#Modify below!
 SOURCE_DIR="/mnt/us/documents/MODIFY (3)"
 TARGET_DIR="/var/local/mesquite/MODIFY (4)"
 DB="/var/local/appreg.db" #KEEP THIS!
@@ -219,7 +223,7 @@ APP_ID="MODIFY (5)"
 
 #DO NOT MODIFY BELOW
 
-#Copy To VAR/LOCAL/MESQUITE
+#Copy to var/local/mesquite
 if [ -d "$SOURCE_DIR" ]; then
     if [ -d "$TARGET_DIR" ]; then
         rm -rf "$TARGET_DIR"
@@ -229,58 +233,59 @@ else
     exit 1
 fi
 
-#Redeclare To APPREG.DB 
+#Redeclare to appreg.db
 sqlite3 "$DB" <<EOF
 INSERT OR IGNORE INTO interfaces(interface) VALUES('application');
 
 INSERT OR IGNORE INTO handlerIds(handlerId) VALUES('$APP_ID');
 
-INSERT OR REPLACE INTO properties(handlerId,name,value) 
+INSERT OR REPLACE INTO properties(handlerId,name,value)
   VALUES('$APP_ID','lipcId','$APP_ID');
-INSERT OR REPLACE INTO properties(handlerId,name,value) 
+INSERT OR REPLACE INTO properties(handlerId,name,value)
   VALUES('$APP_ID','command','/usr/bin/mesquite -l $APP_ID -c file://$TARGET_DIR/');
-INSERT OR REPLACE INTO properties(handlerId,name,value) 
+INSERT OR REPLACE INTO properties(handlerId,name,value)
   VALUES('$APP_ID','supportedOrientation','U');
 EOF
 
-echo Registered $APP_ID, You May Now Launch It With LIPC.
+echo Registered $APP_ID, you may now launch it with LIPC.
 sleep 2
 
-#Launch With LIPC
+#Launch with LIPC
 nohup lipc-set-prop com.lab126.appmgrd start app://$APP_ID >/dev/null 2>&1 &
 ```
 
 (Modifiers)
-1. Name Of Scriptlet, Shows Up In Library
-2. Author Of Scriptlet, Shows Up In Library
-3. Name Of The Folder In Which You Are Developing Your App
-4. Name Of The Folder In Which You Are Developing Your App
-5. Same Namespace As Mandated In Config.XML
 
-## You're Done!
+1. Name of scriptlet, shows up in library.
+2. Author of scriptlet, shows up in library.
+3. Name of the folder in which you are developing your app.
+4. Name of the folder in which you are developing your app.
+5. Same namespace as mandated in Config.XML.
 
-- Distribute With `appName.sh` And `appName/` Folder!
-- To Install, Drag Both To The `documents/` Folder On Your Kindle!
-- Updating? Simply Drag & Drop, Replacing The Current Folder And/Or Scriptlet. NOTE; You Have To Reboot, Reload [The Page], Or Kill The Mesquite Process (By Switching Apps; Or Other).
+## You're done!
+
+- Distribute with `appName.sh` and `appName/` folder!
+- To install, drag both to the `documents/` folder on your Kindle!
+- Updating? Simply drag & drop, replacing the current folder and/or scriptlet. NOTE: You have to reboot, reload [the page], or kill the Mesquite process (by switching apps; or other).
 - :>
 
-# Frequently Asked Questions
+# Frequently asked questions
 
-## Q: What Is Mesquite?
+## Q: What is Mesquite?
 
-A: Mesquite Is A Private Amazon 'Service' Used On The Kindle To Launch WAFs (Web Application Frameworks).
+A: Mesquite is a private Amazon 'service' used on the Kindle to launch WAFs (Web Application Frameworks).
 
-## Q: Different Scaling On Different Models?
+## Q: Different scaling on different models?
 
-A: This Is A Known - And Quite Annoying - Issue. You Can Create 2 Versions Of Your App, Not Use Static `px` Height/Width (Note; `vh`, `vw` Are Unsupported), Or Use `@media` Queries (Recommended!)
+A: This is a known — and quite annoying — issue. You can create two versions of your app, not use static `px` height/width (note: `vh`, `vw` are unsupported), or use `@media` queries (recommended!).
 
-## Q: Why Is Mesquite Still Running In The Background?
+## Q: Why is Mesquite still running in the background?
 
-A: Mesquite Does Not Terminate/Cleanup Until Another Instance Of It Is Opened. This Is Standard Amazon Behaviour, And Is Why You Need To Restart To See Changes Reflected In Your App - Or Safely Kill The Process. 
+A: Mesquite does not terminate/cleanup until another instance of it is opened. This is standard Amazon behaviour, and is why you need to restart to see changes reflected in your app — or safely kill the process.
 
-## Q: Why Can't I... Center A Div?
+## Q: Why can't I... center a div?
 
-A: Use Tables! CSS2 Doesn't Support Flexbox, Grid, Or Even The Old `position: absolute;` Method! Here's An Example:
+A: Use tables! CSS2 doesn't support Flexbox, Grid, or even the old `position: absolute;` method! Here's an example:
 
 ```html
 <style>
@@ -312,38 +317,38 @@ A: Use Tables! CSS2 Doesn't Support Flexbox, Grid, Or Even The Old `position: ab
 </div>
 ```
 
-## Q: Why Can't I Load Characters From Different Alphabets On Elder Kindles/Mojibake?
+## Q: Why can't I load characters from different alphabets on older Kindles/mojibake?
 
-A: Don't Know, But Can Be Mitigated With ANSI Escape Codes/Per-Language Font As Done In [KAnki](https://github.com/crizmo/KAnki/tree/main).
+A: I don't know, but it can be mitigated with ANSI escape codes/per-language font as done in [KAnki](https://github.com/crizmo/KAnki/tree/main).
 
-## Q: Why Does Illusion Exist?
+## Q: Why does Illusion exist?
 
-A: Easy Apps.
+A: Easy apps.
 
 ## Q: Fetch()?
 
-A: Look At XMLHttpRequest()
+A: Look at XMLHttpRequest().
 
-## Q: Why Is My JS Not Loading?
+## Q: Why is my JS not loading?
 
-A: Most Likely, ES6 Features (Try Babel + Polyfill), Or Incorrect Path.
+A: Most likely, ES6 features (try Babel + Polyfill), or incorrect path.
 
-## Q: Why Hasn't My App Updated?
+## Q: Why hasn't my app updated?
 
-A: Reload, Then Try Again! (Add Button With `window.location.reload();`, Spam It, Exit In & Out, Spam It, It Will Update!) If Not, Restart Kindle Or Switch Mesquite Apps (Mesquite Process Gets Killed On App Switch)
+A: Reload, then try again! (Add a button with `window.location.reload();`, spam it, exit in & out, spam it, it will update!) If not, restart Kindle or switch Mesquite apps (Mesquite process gets killed on app switch).
 
-## Q: WebKit Version/Safari Version?
+## Q: WebKit version/Safari version?
 
-A: Approx. Safari 5, 5.1 Launching With WebKit 533.16 According To [MDN](https://github.com/mdn/browser-compat-data/blob/main/browsers/safari.json).
+A: Approx. Safari 5, 5.1 launching with WebKit 533.16 according to [MDN](https://github.com/mdn/browser-compat-data/blob/main/browsers/safari.json).
 
-## Q: [What Are Some] Common CSS/JS Methods/Styles That Are Unsupported?
+## Q: [What are some] common CSS/JS methods/styles that are unsupported?
 
-A: Fetch(), Flexbox, Arrow Functions, Const/Let, CSS Variables, ...
+A: Fetch(), Flexbox, arrow functions, const/let, CSS variables, ...
 
-## Q: Run SH?
+## Q: Run sh?
 
-Look At [Utild](https://github.com/KindleModding/utild) And [KindleForge](https://github.com/polish-penguin-dev/KindleForge) Which Is An IllusionUtild Application. Also Consider Reading The Mesquite & WAFs Writeup. Calling `com.lab126.transfer` Is Also Possible But Unreliable.
+Look at [Utild](https://github.com/KindleModding/utild) and [KindleForge](https://github.com/polish-penguin-dev/KindleForge) which is an IllusionUtild application. Also consider reading the Mesquite & WAFs writeup. Calling `com.lab126.transfer` is also possible but unreliable.
 
-## Q: Found Something Out? How Do I Add My Own Helpful Q&A?
+## Q: Found something out? How do I add my own helpful Q&A?
 
-A: DM Penguins184 On Discord!
+A: DM Penguins184 on Discord!

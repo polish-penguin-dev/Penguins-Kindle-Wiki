@@ -1,6 +1,7 @@
 # Illusion Guide
 
-> [!NOTE] This page contains the (slightly modified) "Getting Started" section of the old wiki. It teaches the basics of making an IllusionGeneric application.
+> [!NOTE]
+> This page contains the (slightly modified) "Getting Started" section of the old wiki. It teaches the basics of making an IllusionGeneric application.
 
 # Getting started
 

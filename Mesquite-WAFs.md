@@ -336,6 +336,19 @@ Previously it is said this prefills a mock Kindle object if loaded in a modern w
 
 [Utild](https://github.com/KindleModding/utild) is a simple LIPC service you can use to just run `sh` instead of the `com.lab126.transfer` exploit. It works more reliably and can be installed & used in Mesquite apps to run actual commands. See IllusionUtild for more.
 
+### Per-platform config.xmls
+
+As seen in the store WAF, you can have different config.xmls per kindle platform, by creating a `config_[platform].xml` file. This is mostly useless, but could potentially be used for scaling/opening different "payloads" per-platform if you can't use `@media` queries. Here's a list of platforms and which devices they map out to:
+
+- Bellatrix; Kindle PW5, Basic 4
+- Duet; Kindle Oasis
+- Heisenberg; Kindle Basic 2 (8th Gen)
+- Rex; Kindle PW4, Basic 3 (10th Gen)
+- Wario; Kindle PW2, Basic, Voyage, PW3
+- Yoshi; Kindle Touch, Kindle 4
+- Yoshime3; Kindle PW
+- Zelda; Kindle Oasis 2, 3
+
 ## FAQ
 
 ### Why can't I use `kindle.messaging.recieveMessage()` with Utild?

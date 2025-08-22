@@ -263,7 +263,7 @@ On firmware versions below 5.16.4, the experimental browser uses Mesquite and no
 
 When you download a file, it is handled by `FileManager.js` which creates a dialog asking "Would you like to download [File Name].[Ext]?". You can place HTML elements in the download name, allowing for XSS, and running a dialoger HTML. This Pillow dialog does not have NativeBridge access though.
 
-It is patched in modern firmware.
+It is patched in modern firmware, and used by [Winterbreak2](https://github.com/KindleModding/Winterbreak2).
 
 ### KindleDrip
 
@@ -368,3 +368,4 @@ With the introduction of Chromium in 5.16.4 and slow replacement of Mesquite, it
 Thanks for reading my Mesquite & WAFs writeup!
 
 Contact Penguins184 on Discord to suggest updates/ask any questions. Bye!
+

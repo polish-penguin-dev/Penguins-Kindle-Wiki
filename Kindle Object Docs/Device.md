@@ -101,6 +101,8 @@ Description: Returns the number of 'CSS Pixels Per Inch'.
 
 ## Dev
 
+Contains all of the above, additionally:
+
 ### `kindle.dev.getRegisteredUserId()`
 Description: Returns a string identifier which is the `userId`, seemingly used to track change in Registration.
 

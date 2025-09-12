@@ -26,7 +26,7 @@ Parameters:
 | useThreshold  | boolean   | Whether to refresh like normal or use the modified 'threshold' value |
 
 ### `kindle.device.setOrientation(orientation)`
-Description: Sets the screen orientation according to the provided string. A list of valid strings can be found in the [Enums]() section.
+Description: Sets the screen orientation according to the provided string. A list of valid strings can be found in the [Enums](https://github.com/polish-penguin-dev/Penguins-Kindle-Wiki/blob/main/Kindle%20Object%20Docs/Enums.md#orientations) section.
 
 ### `kindle.device.getDPI()`
 Description: Returns device DPI

@@ -8,8 +8,8 @@ Welcome to Penguins' Kindle Utilities! A mini wiki for all things Mesquite (and 
 ## Table of contents
 
 1. [Mesquite & WAFs](/Mesquite-WAFs.md)
-2. [Illusion Guide](/Illusion-Guide.md)
-3. (TODO: Go-GTK Tutorial)
+2. [Kindle Object Documentation](/Kindle%20Object%20Docs/Overview.md)
+3. [Illusion Guide](/Illusion-Guide.md)
 
 ## Credits
 

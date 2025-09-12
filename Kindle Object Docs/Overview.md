@@ -14,8 +14,6 @@ Pages:
 - [Todo](/Kindle%20Object%20Docs/Todo.md)
 - [Download](/Kindle%20Object%20Docs/Download.md)
 - [Appmgr](/Kindle%20Object%20Docs/Appmgr.md)
-
-
 - Prior HTML, CSS, JS Knowledge is required to understand this documentation
 - It is recommended you read the Mesquite & WAFs backup before using the kindle object.
 - Most information has been taken from the wiki, but is better maintained, explained, and documents additional APIs.

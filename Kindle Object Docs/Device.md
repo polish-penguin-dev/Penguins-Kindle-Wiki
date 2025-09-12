@@ -1,6 +1,6 @@
 # Kindle Object Documentation
 
-## Device (Dev)
+## Device
 
 Device information & modifiers. Properties:
 
@@ -98,3 +98,17 @@ Description: Unknown. Returned `0` when tested.
 
 ### `kindle.device.getCSSPixelsPerInch()`
 Description: Returns the number of 'CSS Pixels Per Inch'.
+
+## Dev
+
+### `kindle.dev.getRegisteredUserId()`
+Description: Returns a string identifier which is the `userId`, seemingly used to track change in Registration.
+
+### `kindle.dev.getDSN()`
+Description: Returns an unknown string
+
+### `kindle.dev.getDeviceLocale()`
+Description: Returns device locale, e.g. `en_GB`
+
+### `kindle.dev.getDeviceTypeString()`
+Description: Returns device type, e.g. `malbec`.

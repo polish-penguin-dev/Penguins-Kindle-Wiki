@@ -17,3 +17,13 @@ Pages:
 - Prior HTML, CSS, JS Knowledge is required to understand this documentation
 - It is recommended you read the Mesquite & WAFs backup before using the kindle object.
 - Most information has been taken from the wiki, but is better maintained, explained, and documents additional APIs.
+
+> [!IMPORTANT]
+> When the wiki refers to 'replaceable functions', they mean this: 
+> ```js
+> kindle.function = function(argument) {
+>    ... (use argument)
+>}
+> ```
+>
+> The function assigned will be called on an event.

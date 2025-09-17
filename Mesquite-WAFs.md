@@ -234,7 +234,7 @@ There are many tools available to assist you with app development. For example;
 - [BabelJS](https://babeljs.io/)/[SWC](https://swc.rs/) - Transpile modern JS (e.g. ES6) to ES5 Kindle-compatible JS
 - [Polyfill](https://github.com/polish-penguin-dev/IllusionChess/blob/master/illusionChess/js/polyfill.min.js) - Allow you to use modern web APIs on the Kindle (NOT language features!). Best in combination with a transpiler
 - [Mesquito SDK](https://github.com/KindleModding/Mesquito/blob/main/mesquito/sdk.js) - Although adapted for usage in the Store WAF, it contains useful scriptlets and functionality regarding Chromebar, for example.
-- [Illusion](https://github.com/polish-penguin-dev/Illusion) - A scriptlet which registers and launches WAFs for you
+- [Illusion](https://github.com/polish-penguin-dev/Penguins-Kindle-Wiki/blob/main/Illusion-Guide.md) - A scriptlet which registers and launches WAFs for you
 - [ScreenControl](https://github.com/polish-penguin-dev/Illusion/blob/main/Assets/screencontrol-binaries.tar.gz) - Control your Kindle from the web
 
 ## Exploits
@@ -268,6 +268,10 @@ It is patched in modern firmware, and used by [Winterbreak2](https://github.com/
 ### KindleDrip
 
 I would recommend reading [this article](https://medium.com/@baronyogev/kindledrip-from-your-kindles-email-address-to-using-your-credit-card-bb93dbfb2a08) on how KindleDrip utilised send-to-Kindle, Mesquite, JPEG XR overflow, and more to achieve RCE.
+
+### Todo Dconfig Replacement
+
+`kindle.todo` is a very interesting kindle object API that lets you send messages within the internal lab126 ToDo messaging system. In theory, this would allow for the downloading of new screensavers, updating wishlists, etc, and considering just how this connects everything, a jailbreak could even be theoretically possible (but not too practical considering it's much harder to actually make any custom WAFs now below 5.18.1). If you look at [Detour](https://github.com/polish-penguin-dev/Detour) in the "Detour Installer" section, you can see `kindle.todo` being used to modify dconfig values, and therefore replace the endpoint loaded in the store's `<iframe>`.
 
 ## UI design
 
@@ -368,4 +372,5 @@ With the introduction of Chromium in 5.16.4 and slow replacement of Mesquite, it
 Thanks for reading my Mesquite & WAFs writeup!
 
 Contact Penguins184 on Discord to suggest updates/ask any questions. Bye!
+
 
